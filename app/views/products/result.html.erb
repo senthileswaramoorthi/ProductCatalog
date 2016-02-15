@@ -1,0 +1,9 @@
+<!--% form_for [@product1], :url=>{:controller=>"products", :action=>"result_process"} do |i|%-->
+
+<!--%=form_for [@product1],:url=>{:controller=>"products",:action=>"result_process"} do |i| %-->
+<% i=@product1 %>
+ <div class="col-md-6">
+
+ <%=link_to i.cat_name, products_result_path(i)%>
+ </div>
+

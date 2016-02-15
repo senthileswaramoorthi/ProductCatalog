@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  i_id: MyString
+  c_name: MyString
+  name: MyString
+  value: MyString
+  unit: MyString
+  p_id: MyString
+
+two:
+  i_id: MyString
+  c_name: MyString
+  name: MyString
+  value: MyString
+  unit: MyString
+  p_id: MyString

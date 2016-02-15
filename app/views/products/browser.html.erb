@@ -1,0 +1,19 @@
+<table align="center" border="1" bordercolor="gray">
+
+<%= form_for [@product], :url=>{:controller=>"products", :action=>"browser_process"} do |f|%>
+
+<center><h3><i><font color="gray">Import a CSV File</font></i></h3></center>
+
+    <tr>
+
+    <td><%= f.file_field :file1,:required=>true %></td>
+
+    <td><%= f.submit "Import CSV",:class=>"btn-success"%></td>
+
+    </tr>
+
+<% end %>
+
+
+</table>
+

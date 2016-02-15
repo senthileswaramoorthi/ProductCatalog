@@ -1,0 +1,27 @@
+<h3><center>***CREATE NEW ACCOUNT***</center></h3>
+
+<table align="center">
+
+<%=form_for [@admin],:url=>{:controller=>"products",:action=>"new_account_process"} do |i| %>
+
+<tr>
+  <td><%= i.text_field :username,:placeholder=>"Username",:required=>true %></td>
+</tr>
+
+<tr>
+  <td><%= i.password_field :password,:placeholder=>"Password",:required=>true %></td>
+</tr>
+
+<tr>
+  <td><%= i.text_field :email,:placeholder=>"E-mail",:required=>true %></td>
+</tr>
+
+<table align="center">
+  <tr>
+    <td><%= i.submit "Submit"%></td>
+  </tr>
+</center>
+
+<%end%>
+
+</table>
