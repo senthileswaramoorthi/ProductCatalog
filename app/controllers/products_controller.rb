@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
  def home
 
     @product=Product.where(:parent_id=>nil)
-    
+    if params[:search]
+      @product = Product.search(params[:search]).order("created_at DESC")
+    else
+      @product = Product.order("created_at DESC")
+    end    
  end
 
  def admin
@@ -57,6 +61,7 @@ class ProductsController < ApplicationController
  def new_account_process
  
   @admin=Admin.new(admin_params)
+
    if @admin.save
 
    redirect_to :action=>"admin"
