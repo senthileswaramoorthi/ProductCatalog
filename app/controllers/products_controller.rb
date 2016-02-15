@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
 
  def admin
 
-    @product=Product.new
+    @admin=Admin.new
 
     render :layout => false
 
@@ -30,11 +30,11 @@ class ProductsController < ApplicationController
 
     params.permit!
 
-    @product=Product.where params[:product]
+    @admin=Admin.where params[:admin]
 
-    if @product.blank?
+    if @admin.blank?
 
-    session[:product_id]=@product.first.id
+    session[:admin_id]=@admin.first.id
 
     redirect_to :action=>"browser"
 
@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
 
  def new_account
 
-    @product=Product.new
+    @admin=Admin.new
 
     render :layout => false
 
@@ -56,7 +56,8 @@ class ProductsController < ApplicationController
 
  def new_account_process
  
-   if @product.blank?
+  @admin=Admin.new(admin_params)
+   if @admin.save
 
    redirect_to :action=>"admin"
   
@@ -91,18 +92,13 @@ class ProductsController < ApplicationController
  def result
 
     @product1=Product.new
-
-
-
-
-
     @product=Product.where( parent_id:nil)
  end
 
  def result_process
 
    @product1=Product.where("parent_id=?", params[:id])
-
+byebug
  end
 
  def aboutus
@@ -117,4 +113,7 @@ class ProductsController < ApplicationController
 
  end
 
+ def admin_params
+   params.require(:admin).permit!
+ end
 end
