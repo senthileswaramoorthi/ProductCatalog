@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'products/home'
+ # get 'products/home'
  
   get 'products/login'
 
