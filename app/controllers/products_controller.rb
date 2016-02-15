@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
 
  def login
 
-    @admin=Admin.new
+    @adminst=Adminst.new
 
     render :layout => false
 
@@ -22,11 +22,11 @@ class ProductsController < ApplicationController
                
     params.permit!
 
-    @admin=Admin.where params[:admin]
+    @adminst=Adminst.where params[:adminst]
 
-    if @admin.blank?
+    if @adminst.blank?
 
-    session[:admin_id]=@admin.first.id
+    session[:adminst_id]=@adminst.first.id
 
      @product=Product.new 
    redirect_to :action=>"aboutus"
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
 
  def new_account
 
-    @admin=Admin.new
+    @adminst=Adminst.new
 
     render :layout => false
 
@@ -49,9 +49,9 @@ class ProductsController < ApplicationController
 
  def new_account_process
  
-  @admin=Admin.new(admin_params)
+  @adminst=Adminst.new(adminst_params)
 
-   if @admin.save
+   if @adminst.save
 
    redirect_to :action=>"admin"
   
