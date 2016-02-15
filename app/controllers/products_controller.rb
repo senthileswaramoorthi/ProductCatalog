@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     end    
  end
 
- def admin
+ def login
 
     @admin=Admin.new
 
@@ -18,20 +18,8 @@ class ProductsController < ApplicationController
 
  end
 
-  def admin_process
+  def login_process
                
-
-
-  # params.permit!
-   #   @pen=Pen.where params[:pen]
-    #    if not @pen.blank?
-     #      session[:pen_id]=@pen.first.id
-      #     redirect_to :action =>"index"
-       # else
-        #   redirect_to root_path
-        #end
-  
-
     params.permit!
 
     @admin=Admin.where params[:admin]
@@ -40,7 +28,8 @@ class ProductsController < ApplicationController
 
     session[:admin_id]=@admin.first.id
 
-    redirect_to :action=>"browser"
+     @product=Product.new 
+   redirect_to :action=>"aboutus"
 
     else
 
@@ -97,13 +86,13 @@ class ProductsController < ApplicationController
  def result
 
     @product1=Product.new
-    @product=Product.where( parent_id:nil)
+    @product=Product.where(:parent_id=>nil)
  end
 
  def result_process
 
    @product1=Product.where("parent_id=?", params[:id])
-byebug
+
  end
 
  def aboutus

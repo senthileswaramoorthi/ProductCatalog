@@ -1,0 +1,41 @@
+<%= link_to "Home",products_home_path%>
+
+<div class="top">
+
+<h3><center>***LOGIN NOW***</center></h3>
+
+<table align="center">
+
+<%=form_for [@admin],:url=>{:controller=>"products",:action=>"login_process"} do |i| %>
+
+<tr>
+
+  <td><%= i.text_field :username,:placeholder=>"Username",:required=>true %></td>
+
+</tr>
+
+<tr>
+
+  <td><%= i.password_field :password,:placeholder=>"Password",:required=>true %></td>
+
+</tr>
+
+<table align="center">
+
+  <tr>
+
+   <td><%= i.submit "Login"%></td>
+
+   <td><%= link_to "Create Account!",products_new_account_path%></td>
+
+  </tr>
+ 
+ 
+  </center>
+
+  <%end%>
+
+</table>
+
+
+<div>

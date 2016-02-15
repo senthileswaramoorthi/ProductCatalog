@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'products/home'
  
-  get 'products/admin'
+  get 'products/login'
 
   get 'products/browser'
 
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   post  'products/result_process'
 
-  post 'products/admin_process'
+  post 'products/login_process'
 
   post 'products/result'
 

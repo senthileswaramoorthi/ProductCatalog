@@ -102,7 +102,9 @@ require 'csv'
         sku.save(:validate=>false)
     end 
   end
- def self.search(query)
- where("title like ?", "%#{query}%") 
+def self.search(search)
+  where("name LIKE ?", "%#{search}%") 
+  where("content LIKE ?", "%#{search}%")
 end
 end
+
