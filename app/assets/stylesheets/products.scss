@@ -89,7 +89,18 @@ body {
 	padding: 20px 0;
 }
 .logo {
-	float: left;
+	/**float: left;**/
+   background: transparent url("/assets/logo.jpeg") no-repeat 0% 0%;
+   height: 201px;
+   width: 180px;
+   size: 100%;
+   display: block;
+   color: #000;
+   position: absolute;
+   top: 34%;
+   left: 25%;
+           
+
 }
 
 /**** Cart ****/

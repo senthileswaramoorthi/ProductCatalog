@@ -6,7 +6,7 @@
 
 <table align="center">
 
-<%=form_for [@admin],:url=>{:controller=>"products",:action=>"login_process"} do |i| %>
+<%=form_for [@adminst],:url=>{:controller=>"products",:action=>"login_process"} do |i| %>
 
 <tr>
 
@@ -16,7 +16,7 @@
 
 <tr>
 
-  <td><%= i.password_field :password,:placeholder=>"Password",:required=>true %></td>
+  <td><%= i.password_field :newpass,:placeholder=>"Password",:required=>true %></td>
 
 </tr>
 
@@ -26,11 +26,11 @@
 
    <td><%= i.submit "Login"%></td>
 
-   <td><%= link_to "Create Account!",products_new_account_path%></td>
+   <td><%= link_to "ForgotPassword?",products_forgot_path%></td>
 
   </tr>
- 
- 
+
+
   </center>
 
   <%end%>
@@ -39,3 +39,9 @@
 
 
 <div>
+
+<div id="index">
+
+         <!--img src="/assets/logo.jpeg"-->
+</div>
+

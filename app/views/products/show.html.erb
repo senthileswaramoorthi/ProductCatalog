@@ -1,0 +1,51 @@
+
+<br>
+<br>
+<br>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<!--%=form_for[@product1], :url=>{:controller=>"products", :action=>"result_process"} do |i| %-->
+
+
+<% unless  @product1.is_a? Sku::ActiveRecord_Relation %>
+<div class="table-responsive">
+	<table class="table">
+		 <thead>
+      <tr class="success">
+        <th>Categories</th></tr></thead>
+<%@product1.each do|i|%>
+<tbody><tr><td><%=link_to i.cat_name, product_path(i)%></td></tr></tbody>
+<%end%>
+</table>
+</div>
+<%else%>
+<div class="table-responsive">
+	<table class="table">
+		 <thead>
+      <tr class="info">
+        <th>Item id</th><th>Product Name</th><th>Manufaturer Name</th></tr></thead>
+<%@product1.each do|i|%>
+<%if @s!=i.i_id%>
+<tbody><tr><td><%=i.i_id%></td>
+<%@p=Sku.where(:i_id=>i.i_id)%>
+<td><%=@p.where(:name=> "Product Name").maximum(:value)%></td>
+<td><%=@p.where(:name=> "Manufacturer Name").maximum(:value)%></td></tr></tbody>
+<%end%>
+<%@s=i.i_id%>
+<%end%>
+</table>
+</div>
+<%end%>
+
+
+
+
+
+
+
+
+

@@ -15,15 +15,10 @@ Rails.application.routes.draw do
 
   get 'products/details'
   
-  get 'products/result_process'
+ # get 'products/result_process'
 
   get 'products/new_account'
 
-  put 'products/result_process'
-
-  patch 'products/result_process'
-
-  post 'products/new_account_process'
 
   post 'products/description'
 
@@ -31,7 +26,7 @@ Rails.application.routes.draw do
 
   post 'products/aboutus'
 
-  post  'products/result_process'
+ # post  'products/result_process'
 
   post 'products/login_process'
 
@@ -42,7 +37,7 @@ Rails.application.routes.draw do
   post 'products/browser'
 
   post 'products/browser_process'
-
+resources :products
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

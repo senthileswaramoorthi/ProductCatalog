@@ -3,16 +3,11 @@ class ProductsController < ApplicationController
  def home
 
     @product=Product.where(:parent_id=>nil)
-    if params[:search]
-      @product = Product.search(params[:search]).order("created_at DESC")
-    else
-      @product = Product.order("created_at DESC")
-    end    
  end
 
  def login
 
-    @admin=Admin.new
+    @adminst=Adminst.new
 
     render :layout => false
 
@@ -22,11 +17,11 @@ class ProductsController < ApplicationController
                
     params.permit!
 
-    @admin=Admin.where params[:admin]
+    @adminst=Adminst.where params[:adminst]
 
-    if @admin.blank?
+    if @adminst.blank?
 
-    session[:admin_id]=@admin.first.id
+    session[:adminst_id]=@adminst.first.id
 
      @product=Product.new 
    redirect_to :action=>"aboutus"
@@ -41,7 +36,7 @@ class ProductsController < ApplicationController
 
  def new_account
 
-    @admin=Admin.new
+    @adminst=Adminst.new
 
     render :layout => false
 
@@ -49,11 +44,11 @@ class ProductsController < ApplicationController
 
  def new_account_process
  
-  @admin=Admin.new(admin_params)
+  @adminst=Adminst.new(adminst_params)
 
-   if @admin.save
+   if @adminst.save
 
-   redirect_to :action=>"admin"
+   redirect_to :action=>"login"
   
    else
     
@@ -83,21 +78,30 @@ class ProductsController < ApplicationController
 
  end
 
- def result
+ def show 
 
-    @product1=Product.new
+    #@product1=Product.new
     @product=Product.where(:parent_id=>nil)
+    unless Product.exists?(:parent_id=>params[:id])
+      @product1=Sku.where(:p_id=>params[:id])
+#@product12=Sku.where(:p_id=>params[:id]).maximum(:i_id)
+
+      #@product2=@product11.where(:name=> "Product Name").maximum(:value)
+
+       #@product3=@product11.where(:name=> "Manufacturer Name").maximum(:value)
+       #@product1=[@product12,@product2,@product3]
+
+    else 
+      @product1=Product.where("parent_id=?", params[:id])
+    end
  end
-
- def result_process
-
-   @product1=Product.where("parent_id=?", params[:id])
-
- end
-
  def aboutus
  @product=Product.new
  end
+ def set_page
+      @product = Product.find(params[:id])
+
+    end
 
  private
 
