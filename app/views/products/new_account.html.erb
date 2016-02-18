@@ -5,21 +5,33 @@
 <%=form_for [@adminst],:url=>{:controller=>"products",:action=>"new_account_process"} do |i| %>
 
 <tr>
-  <td><%= i.text_field :username,:placeholder=>"Username",:required=>true %></td>
+  <td><%= i.text_field :name,:placeholder=>"Username",:required=>true, "data-tooltip" => true, :class => "has-tip", :title => "Must be unique values",:id=>"name",:onkeyup=>"validateForm()" %></td>
 </tr>
 
 <tr>
+<<<<<<< HEAD
   <td><%= i.password_field :oldpass,:placeholder=>"OldPassword",:required=>true %></td>
 </tr>
 
 <tr>
   <td><%= i.text_field :newpass,:placeholder=>"NewPassword",:required=>true %></td>
+=======
+  <td><%= i.password_field :password,:placeholder=>"Password",:required=>true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Minimum six characters" } %></td>
+</tr>
+
+<tr>
+  <td><%= i.password_field :confirm_password,:placeholder=>"Confirmation Password",:required=>true, "data-tooltip" => true, :class => "has-tip", :title => "Minimum six characters" %></td>
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
 </tr>
 
 <table align="center">
+
   <tr>
+
     <td><%= i.submit "Submit"%></td>
+
   </tr>
+
 </center>
 
 <%end%>

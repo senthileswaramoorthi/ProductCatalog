@@ -3,22 +3,60 @@ Rails.application.routes.draw do
  
   get 'products/login'
 
+  get 'products/login_process'
+
+  get 'products/new_account'
+
+  get 'products/new_account_process'
+
   get 'products/browser'
 
   get 'products/browser_process'
 
   get 'products/result'
 
+  get 'products/result_process'
+
   get 'products/aboutus'
 
   get 'products/description'
 
   get 'products/details'
+<<<<<<< HEAD
   
  # get 'products/result_process'
+=======
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
 
-  get 'products/new_account'
+  get 'products/logout'
 
+
+  post 'products/result'
+
+<<<<<<< HEAD
+=======
+  put 'products/result_process'
+
+  patch 'products/result_process'
+
+  post  'products/result_process'
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
+
+  post 'products/login'
+
+  post 'products/login_process'
+ 
+  post 'products/browser'
+
+  post 'products/browser_process'
+
+<<<<<<< HEAD
+ # post  'products/result_process'
+=======
+  post 'products/new_account'
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
+
+  post 'products/new_account_process'
 
   post 'products/description'
 
@@ -26,18 +64,13 @@ Rails.application.routes.draw do
 
   post 'products/aboutus'
 
- # post  'products/result_process'
-
-  post 'products/login_process'
-
-  post 'products/result'
-
-  post 'product/admin'
-
-  post 'products/browser'
-
+<<<<<<< HEAD
   post 'products/browser_process'
 resources :products
+=======
+  post 'products/logout'
+
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

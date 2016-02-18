@@ -1,3 +1,7 @@
+<%= link_to "Logout", products_logout_path %>
+
+<%= link_to "Create Admin!",products_new_account_path %>
+
 <table align="center" border="1" bordercolor="gray">
 
 <%= form_for [@product], :url=>{:controller=>"products", :action=>"browser_process"} do |f|%>

@@ -6,11 +6,15 @@
 
 <table align="center">
 
+<<<<<<< HEAD
 <%=form_for [@adminst],:url=>{:controller=>"products",:action=>"login_process"} do |i| %>
+=======
+<%=form_for [Admin.new],:url=>{:controller=>"products",:action=>"login_process"} do |i| %>
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
 
 <tr>
 
-  <td><%= i.text_field :username,:placeholder=>"Username",:required=>true %></td>
+  <td><%= i.text_field :name,:placeholder=>"Username",:required=>true %></td>
 
 </tr>
 
@@ -26,7 +30,11 @@
 
    <td><%= i.submit "Login"%></td>
 
+<<<<<<< HEAD
    <td><%= link_to "ForgotPassword?",products_forgot_path%></td>
+=======
+   <td><!--%= link_to "Create Account!",products_new_account_path%--></td>
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
 
   </tr>
 

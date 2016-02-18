@@ -14,25 +14,43 @@ class ProductsController < ApplicationController
  end
 
   def login_process
+
                
     params.permit!
 
     @adminst=Adminst.where params[:adminst]
 
+<<<<<<< HEAD
     if @adminst.blank?
 
     session[:adminst_id]=@adminst.first.id
 
      @product=Product.new 
    redirect_to :action=>"aboutus"
+=======
+    if not @admin.blank?
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
 
+       session[:admin_id]=@admin.first.id
+       flash[:notice] = "Post successfully created"
+     
+       redirect_to :action=>"browser"
+  
     else
 
-    redirect_to root_path
+       redirect_to :action=>"login"
 
     end
 
  end 
+
+ def logout
+
+      session[:admin_id]=nil
+
+      redirect_to :action => "home"
+
+ end
 
  def new_account
 
@@ -44,17 +62,25 @@ class ProductsController < ApplicationController
 
  def new_account_process
  
+<<<<<<< HEAD
   @adminst=Adminst.new(adminst_params)
 
    if @adminst.save
 
    redirect_to :action=>"login"
+=======
+     @admin=Admin.new(admin_params)
+
+     if @admin.save
+
+        redirect_to :action=>"browser"
+>>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
   
-   else
+     else
     
-   render "new_account"
- 
-   end
+       redirect_to :action=>"new_account"
+    
+     end
   
  end
 
@@ -74,7 +100,7 @@ class ProductsController < ApplicationController
 
     @product=Product.browser(file)
 
-    redirect_to :action=> "home"
+    redirect_to :action=> "browser"
 
  end
 

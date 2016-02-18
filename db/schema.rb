@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215082141) do
+ActiveRecord::Schema.define(version: 20160217121603) do
 
   create_table "admins", force: :cascade do |t|
-    t.string   "username"
+    t.string   "name"
     t.string   "password"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "confirm_password"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "adminsts", force: :cascade do |t|
@@ -29,18 +29,11 @@ ActiveRecord::Schema.define(version: 20160215082141) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cat_names", force: :cascade do |t|
-    t.string   "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "products", force: :cascade do |t|
     t.string   "cat_name"
     t.string   "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
     t.string   "password"
   end
 
