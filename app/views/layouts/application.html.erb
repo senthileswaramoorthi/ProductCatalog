@@ -25,9 +25,9 @@
 
  <div class="account_desc">
   <ul>
-  <li><a href="#">Register</a></li>
+  <!--li><a href="#">Register</a></li-->
   <li><a href="#"><%= link_to "Login",products_login_path%></a></li>
-  <li><a href="#">My Account</a></li>
+  <!--li><a href="#">My Account</a></li-->
   </ul>
  </div>
 
@@ -65,7 +65,7 @@
       <ul>
       <h3>Categories</h3>
         
-       <% @product.each do |i|%>
+       <% Product.all.each do |i|%>
         <li>  <%=link_to i.cat_name,products_result_path(i)%></li>
        <%end%>
       </ul>
