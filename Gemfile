@@ -7,8 +7,10 @@ gem 'rails', '4.2.4'
 gem 'execjs'
 gem 'therubyracer' 
 gem 'sqlite3'
-gem 'bootstrap-sass','2.3.1.0'
-gem 'acts_as_tree', '~> 2.4'
+gem 'searchkick'
+#gem 'bootstrap-sass','2.3.1.0'
+gem "breadcrumbs_on_rails"
+#gem 'acts_as_tree', '~> 2.4'
 # Use SCSS for stylesheets
 gem 'ancestry'
 gem 'sass-rails', '~> 5.0'

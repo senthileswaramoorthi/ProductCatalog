@@ -6,10 +6,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-<% if @sku.blank? %>
-  <h4>sorry no products <%= params[:search] %></h4>
-<%else%>
-<div class="col-sm-8">
+  <div class="col-sm-8">
      
 <%@sku.each do|i|%>
 
@@ -42,7 +39,5 @@
 <%end%>
 
 </div>
-<%end%>
-</tbody>
-</table>
-</div>
+</body>
+</html>

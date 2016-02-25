@@ -1,39 +1,67 @@
-<h3><center>***CHANGE YOUR PASSWORD***</center></h3>
 
-<table align="center">
+<%= link_to image_tag("/assets/back.png",height: '45', width:'45'),products_browser_path %>
 
-<%=form_for [@adminst],:url=>{:controller=>"products",:action=>"new_account_process"} do |i| %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-<tr>
-  <td><%= i.text_field :name,:placeholder=>"Username",:required=>true, "data-tooltip" => true, :class => "has-tip", :title => "Must be unique values",:id=>"name",:onkeyup=>"validateForm()" %></td>
-</tr>
+<div style="height: 335px; width: 400px; border-radius: 20px; box-shadow: 10px 10px 5px; background-color: white; margin-left: 325px;" id="shadow">
 
-<tr>
-<<<<<<< HEAD
-  <td><%= i.password_field :oldpass,:placeholder=>"OldPassword",:required=>true %></td>
-</tr>
+<div style="width: 333px; margin-top: 82px;" class="container">
 
-<tr>
-  <td><%= i.text_field :newpass,:placeholder=>"NewPassword",:required=>true %></td>
-=======
-  <td><%= i.password_field :password,:placeholder=>"Password",:required=>true, input_html: { "data-tooltip" => true, :class => "has-tip", :title => "Minimum six characters" } %></td>
-</tr>
+<center> <%= image_tag("/assets/logfo3.jpeg")%></center>
 
-<tr>
-  <td><%= i.password_field :confirm_password,:placeholder=>"Confirmation Password",:required=>true, "data-tooltip" => true, :class => "has-tip", :title => "Minimum six characters" %></td>
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
-</tr>
+<%=form_for [@admi],:url=>{:controller=>"products",:action=>"new_account_process"} do |i| %>
 
-<table align="center">
 
-  <tr>
+    <form role="form">
 
-    <td><%= i.submit "Submit"%></td>
+    <div class="form-group">
 
-  </tr>
+    <%= i.text_field:username, :class=>"form-control",:placeholder=>"Enter Name",:autofocus=>"true"%>
 
-</center>
+    </div>
+
+    <form role="form">
+
+    <div class="form-group">
+
+    <%= i.text_field:email, :class=>"form-control",:placeholder=>"Enter E-mail"%>
+
+    </div>
+
+    <div class="form-group">
+
+    <%= i.password_field:password, :class=>"form-control",:placeholder=>"Enter password"%>
+
+    </div>
+
+    <form role="form">
+
+    <div class="form-group">
+
+    <%= i.password_field:re_enterpassword, :class=>"form-control",:placeholder=>"Re-Enterpassword"%>
+
+    </div>
+
+    <center><button type="submit" class="btn btn-danger">Submit</button></center>
+
+    </form>
+
+    </div>
 
 <%end%>
 
-</table>
+</body>
+
+</div>
+
+</html>
+

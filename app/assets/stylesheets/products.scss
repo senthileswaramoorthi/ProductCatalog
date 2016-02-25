@@ -89,18 +89,7 @@ body {
 	padding: 20px 0;
 }
 .logo {
-	/**float: left;**/
-   background: transparent url("/assets/logo.jpeg") no-repeat 0% 0%;
-   height: 201px;
-   width: 180px;
-   size: 100%;
-   display: block;
-   color: #000;
-   position: absolute;
-   top: 34%;
-   left: 25%;
-           
-
+	float: left;
 }
 
 /**** Cart ****/
@@ -186,9 +175,11 @@ body {
 	-webkit-border-radius: 6px;
 	-moz-border-rfadius: 6px;
 	-o-border-radius: 6px;
+	height: 48px;
 }
 .menu {
 	float: left;
+	height: 49px;
 }
 .menu li {
 	float:left;
@@ -248,7 +239,7 @@ body {
 	height: 25px;
 }
 .header_slide{
-	margin-top:10px;
+	margin-top:5px;
 }
 .header_bottom_left{
 	float:left;
@@ -262,8 +253,7 @@ body {
 	color:#FFF;
 	padding:10px;
 	background:#B81D22;
-	text-transform:uppercase;
-	font-family: 'ambleregular';	
+	font-family: 'monotype corsiva';	
 }
 .categories li a{
 	display:block;
@@ -274,7 +264,6 @@ body {
     margin:0 20px;
     background:url("/assets/drop_arrow.png") no-repeat 0;
     border-bottom: 1px solid #EEE;
-    text-transform:uppercase;	
 }
 .categories li:last-child a{
 	border:none;
@@ -556,4 +545,32 @@ body {
 	.slider-img{
 		width:30%;
 	}
+}
+.pname{
+	font-size: 25px;
+    font-family: "Times New Roman", serif;
+    font-style: oblique;
+    color: #b81d22;
+    margin-top: 50px;
+    
+}
+
+.tab-content > .active {
+   display: block;
+    position: absolute;
+    top: 39%;
+    left: 32%;  
+}
+
+.drop{
+	width: 24%;
+}
+.container{
+	width: 78%;
+	margin-left: 24%;
+}
+.nav{
+	    margin-top: 12px;
+    margin-left: 20%;
+
 }

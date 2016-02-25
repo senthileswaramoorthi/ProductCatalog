@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>ProductCatalog</title>
@@ -8,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/slider.css" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script> 
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript" src="js/startstop-slider.js"></script>
@@ -19,150 +20,73 @@
  <div class="header">
  <div class="headertop_desc">
  <div class="call">
-  <p><span>Need help?</span> call us <span class="number">9003675747</span></span></p>
+  <p><span>Need help?</span> call us <span class="number">9500988362</span></span></p>
  </div>
-
  <div class="account_desc">
   <ul>
-  <!--li><a href="#">Register</a></li-->
-  <li><a href="#"><%= link_to "Login",products_login_path%></a></li>
-  <!--li><a href="#">My Account</a></li-->
+  
+  <li><a href="#"><%= link_to image_tag("/assets/login.jpeg",height: '50', width:'50'),products_login_path,:title=>"Admin Page..."%></a></li>
+  
   </ul>
  </div>
 
  <div class="clear"></div>
- </div>
- 
- <div class="header_bottom">
- <div class="menu">
-     <ul>
-        <li class="active"><a href="home.html">Home</a></li>
-        <li><a href="description.html">Product Description</a></li>
-        <li><a href="details.html">Product Details</a></li>
-        <li><a href="aboutus.html">AboutUs</a></li>
-        <div class="clear"></div>
-     </ul>
- </div>
-
- <div class="search_box">
- <form>
-   <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
- </form>
+ </div> 
+ <div class="header_top">
+ <div class="logo">
+   <a href="index.html"><img src="/assets/altiname.png" alt="" /></a>
  </div>
 
  <div class="clear"></div>
  </div>
- <div class="header_slide">
- <div class="header_bottom_left">
+ <div class="header_bottom">
+ <div class="menu">
+     <ul>
+        <li class="active"><%=link_to "Home",root_path%></li>
+        <li><a href="description.html">Product Description</a></li>
+      <li><a href="details.html">Product Details</a></li>
+      <li><a href="aboutus.html">AboutUs</a></li>
+      <div class="clear"></div>
+     </ul>
+ </div>
+ <div class="search_box">
+          <!--form-->
+           <%= form_tag(action: "result", :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search " %>
+    <%= submit_tag "", :name => nil %>
+<% end %>  <!--/form-->
+  
+</div>
+<div class="clear"></div>
+</div>
+<div class="header_slide">
+<div class="header_bottom_left">        
  <div class="categories">
       <ul>
       <h3>Categories</h3>
-<<<<<<< HEAD
-
-       <% @product.each do|i|%>
-        <li> <%=link_to i.cat_name, product_path(i) %> </li>
-      <%end%>
-=======
-        
-       <% Product.all.each do |i|%>
-        <li>  <%=link_to i.cat_name,products_result_path(i)%></li>
+      <%product=Product.where(parent_id:nil)%>
+        <% product.limit(10).each do |i|%>
+        <li>  <%=link_to i.cat_name,product_path(i)%></li>
        <%end%>
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
+       <h3>Manufacturer</h3>
+        <%man=Sku.where("name IS 'Manufacturer Name'").select(:value).uniq%>
+        <% man.take(10).each do |j|%>
+
+        <li><%=link_to j.value,product_manu_path(j.value) %></li>
+        
+        <%end%>
+ <h3>Manufatures index</h3>
+      <%productm=Product.where(parent_id:nil)%>
+        <% productm.limit(10).each do |i|%>
+        <li>  <%=link_to i.cat_name, product_manu_index_path(i)%></li>
+       <%end%>
       </ul>
- </div>
+ </div>         
  </div>
 <%= yield %>
- <div class="main">
- <div class="content">
- <div class="content_top">
- <div class="heading">
-
-      <h3>New Products</h3>
-      </div>
-      <div class="see">
-      <p><a href="#">See all Products</a></p>
-      </div>
-      <div class="clear"></div>
-                                                 
-  </div>
-
-           <div class="section group">
-           <div class="grid_1_of_4 images_1_of_4">
-           <a href="preview.html"><img src="/assets/flashlight1.JPG" alt="" /></a>
-           <h2>Electrical & Lighting </h2>
-           <div class="price-details">
-           <div class="clear"></div>
-           </div></div>
-
-                   <div class="grid_1_of_4 images_1_of_4">
-                   <a href="preview.html"><img src="/assets/Pressure Sensors & Switches.jpg" alt="" /></a>
-                   <h2>Pressure Sensors&Switches</h2>
-                   <div class="price-details">
-                   <div class="clear"></div>
-                   </div></div>
-                   <div class="grid_1_of_4 images_1_of_4">
-                   <a href="preview.html"><img src="/assets/pumps1.JPG" alt="" /></a>
-                   <h2>Water & Solvent Pumps</h2>
-                   <div class="price-details">
-
-                                <div class="clear"></div>
-                                </div></div>
-                                <div class="grid_1_of_4 images_1_of_4">
-                                <a href="preview.html"><img src="/assets/pumps2.JPG" alt="" /></a>
-                                <h2>Rotary Pumps </h2>
-                                <div class="price-details">
-                                <div class="clear"></div>
-                                </div></div></div>
-
-
-
-               <div class="content_bottom">
-               <div class="heading">
-               <h3>Feature Products</h3>
-               </div>
-               <div class="see">
-               <p><a href="#">See all Products</a></p>
-               </div>
-               <div class="clear"></div>
-               </div>
-
-                    <div class="section group">
- <div class="grid_1_of_4 images_1_of_4">
-                    <a href="preview.html"><img src="/assets/Automation & Control Gear.jpg" alt="" /></a>                     
-                    <h2>ControlGear</h2>
-                    <div class="price-details">
-                    <div class="clear"></div>
-                    </div></div>
-
-                         <div class="grid_1_of_4 images_1_of_4">
-                         <a href="preview.html"><img src="/assets/Cable Markers.jpg" alt="" /></a>
-                         <h2>Cable Markers</h2>
-                         <div class="price-details">
-                         <div class="clear"></div>
-                         </div></div>
-
-                                <div class="grid_1_of_4 images_1_of_4">
-                                <a href="preview.html"><img src="/assets/Digital Multi-Function Meters.jpg" alt="" /></a>
-                                <h2>DigitalMultiple Meters</h2>
-                                <div class="price-details">
-                                <div class="clear"></div>
-                                </div></div>
-
-                                      <div class="grid_1_of_4 images_1_of_4">
-                                      <a href="preview.html"><img src="/assets/Fluid Control Systems.jpg" alt="" /></a>
-                                      <h2>FluidControlSystem </h2>
-                                      <div class="price-details">
-                                      <div class="clear"></div>
-                                      </div></div>
-
-             </div>
-             </div>
-             </div>
-             </div>
-
+ 
+ 
 
 
 </body>
 </html>
-                                                                    
-

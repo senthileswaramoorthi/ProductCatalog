@@ -1,23 +1,49 @@
-<%= link_to "Logout", products_logout_path %>
+<%= link_to image_tag("/assets/logout2.png",height: '45', width:'45'),products_logout_path,:title=>"Logout"%>
 
-<%= link_to "Create Admin!",products_new_account_path %>
+<%= link_to image_tag("/assets/admin1.jpeg",height: '48', width:'48'),products_new_account_path,:title=>"Create New Account" %>
 
-<table align="center" border="1" bordercolor="gray">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div style="margin-top: 80px; margin-left: 358px; box-shadow: 10px 10px 5px; background-color: white; border-radius: 13px; height: 27%; width: 35%;" class="container">
 
 <%= form_for [@product], :url=>{:controller=>"products", :action=>"browser_process"} do |f|%>
 
-<center><h3><i><font color="gray">Import a CSV File</font></i></h3></center>
+<center> <%= image_tag("/assets/logfo2.jpeg")%></center>   
 
-    <tr>
+<form role="form">
 
-    <td><%= f.file_field :file1,:required=>true %></td>
+<div style="margin-top: 33px;" id="al">
 
-    <td><%= f.submit "Import CSV",:class=>"btn-success"%></td>
+<%= f.file_field :file1,:required=>"true"%>
 
-    </tr>
+</div>
+
+<div style="margin-left: 72%; margin-top: -26px;" id="but">
+
+<button type="submit" class="btn btn-danger">Submit</button>
+
+</div>
 
 <% end %>
 
+<%= link_to 'Click To Download Format File', products_help_browser_path %>
 
-</table>
+</form>
+
+
+</body>
+
+</div>
+</html>
+
+
 

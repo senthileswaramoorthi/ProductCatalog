@@ -1,0 +1,162 @@
+<script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+});
+</script>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <head>
+
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+
+
+<div class="container">
+     
+     <ul class="nav nav-tabs">
+       <li class="active"><a href="#OverView">OverView</a></li>
+       <li><a href="#menu1">Specifications</a></li>
+       <li><a href="#menu2">Media</a></li>
+     </ul>
+
+
+
+<div class="tab-content">
+    <div style="height: 100%; margin-top: 8px;" id="OverView" class="tab-pane fade in active">
+     <p>
+          <div class="pname">
+          <%=@sku3.where(:name=>"Product Name").maximum(:value)%>
+          </div>
+
+      <div style="font-size: 100%; color:black; font-family: &quot;Times New Roman&quot;;position: absolute; width: 100%;" class="table- responsive ">                
+         <table style="width: 100%; position: relative;" class="table">
+         <tbody><tr><td>
+           <%@sku3.each do |i|%>
+             <%next if i.name=="Brand" or i.name=="Product Name"%>
+             <%=i.value%>&nbsp;&nbsp;
+            <%end%><td></tr>
+          </tbody>
+          </table>
+       </div>
+
+
+       <div style="font-size: 76%; font-family: &quot;Times New Roman&quot;;margin-top: 58px;" class="table-responsive">                    
+          <table style="position: relative; width: 151px; margin-left: 258px; top: 48px;" class="table">
+           <tbody><tr><td align="center">
+           <%@sku4.each do |i|%>
+           <%next if i.name=="Brand" or i.name=="Product Name"%>
+           <%=i.value%>&nbsp;&nbsp;
+           <%end%></td></tr>
+           </tbody>
+           </table>
+           <img style="margin-top: -83px;" src="/assets/not.jpeg" alt="Image not available">
+           <img style="margin-top: -80px; margin-left: 172px;" src="/assets/lo-not.jpeg" alt="Logo not available">
+        </div>
+
+
+     <div style="font-size: 85%; margin-left:  &quot;35% &quot;font-family: &quot;Times New Roman&quot;;" class="table-responsive">          
+        <table class="table">
+        <tbody>
+         <%@sku5.each do |i|%>
+         <tr>
+         <td><%=i.value%>
+         <%=i.unit%></td>
+         </tr>
+         <%end%>
+         </tbody>
+         </table>
+       </div>
+      </p>
+  </div>
+
+
+<div  style="height: 100%; position: absolute; width: 100%; margin-top: 8px;" id="menu1" class="tab-pane fade">
+   <p>
+       <div class="pname">
+          <%=@sku3.where(:name=>"Product Name").maximum(:value)%>
+          </div>
+
+          <div style="font-size: 100%; color:black; font-family: &quot;Times New Roman&quot;;position: absolute; width: 58%;" class="table- responsive ">                
+         <table style="width: 100%; position: relative;" class="table">
+         <tbody><tr><td>
+           <%@sku3.each do |i|%>
+             <%next if i.name=="Brand" or i.name=="Product Name"%>
+             <%=i.value%>&nbsp;&nbsp;
+            <%end%><td></tr>
+          </tbody>
+          </table>
+       </div>
+
+
+    <div style="font-size: 85%; color:black; font-family: &quot;Times New Roman&quot;; margin-top:4%; width: 58%;" class="table-responsive">          
+    <table class="table">
+    <tbody>
+    <%@sku1.each do |i|%>
+     <tr>
+     <td><%=i.name %></td>
+     <td><%=i.value%>
+     <%=i.unit%></td>
+     </tr>
+    <%end%>
+    </tbody>
+    </table>
+    </div>
+   </p>
+  </div>
+ 
+
+ <div style="height: 100%; margin-top: 8px; width: 58%;" id="menu2" class="tab-pane fade">
+  <p>
+          <div class="pname">
+          <%=@sku3.where(:name=>"Product Name").maximum(:value)%>
+          </div>
+
+          <div style="font-size: 100%; color:black; font-family: &quot;Times New Roman&quot;;position: absolute; width: 100%;" class="table- responsive ">                
+         <table style="width: 100%; position: relative;" class="table">
+         <tbody><tr><td>
+           <%@sku3.each do |i|%>
+             <%next if i.name=="Brand" or i.name=="Product Name"%>
+             <%=i.value%>&nbsp;&nbsp;
+            <%end%><td></tr>
+          </tbody>
+          </table>
+       </div>
+      
+
+
+  <div style="font-size: 85%; font-family: &quot;Times New Roman&quot;; margin-top: 10%;" class="table-responsive">  
+  <table class="table">
+    <tbody>
+     <%@sku6.each do |i|%>
+
+     <tr>
+     <td><%=link_to i.value,i.value %></a></td>
+     </tr>
+     <%end%>
+     </tbody>
+  </table>
+  </div>
+  </p>
+</div>
+</div>
+
+ </body>
+</html>

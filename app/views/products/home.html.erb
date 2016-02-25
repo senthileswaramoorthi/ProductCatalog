@@ -1,81 +1,27 @@
-<html>
-<head>
-   <script type="text/javascript">
-    function DropDown(el) {
-     this.dd = el;
-     this.initEvents();
-     }
-     DropDown.prototype = {
-     initEvents : function() {
-     var obj = this;
-      obj.dd.on('click', function(event){
-      $(this).toggleClass('active');
-      event.stopPropagation();
-     });
-      }
-      }
-      $(function() {
-      var dd = new DropDown( $('#dd') );
-      $(document).click(function() {
-      $('.wrapper-dropdown-2').removeClass('active');
-      });
-      });
-   </script>
-       <div class="header_bottom_right">
-       <div class="slider">
-       <div id="slider">
-       <div id="mover">
-       <div id="slide-1" class="slide">
-       <div class="slider-img">
+<div class="row">
+<h1>Categories</h1>
+<br>
+<div class="col-sm-6">
+<script type="text/javascript">
+        function get_sub_a{
+                $.ajax({
+            type: "GET",
+            url: "/products/show"
 
-             <a href="preview.html"><img src="/assets/Photodetectors.jpg" alt="learn more" /></a>                                         </div>
-             <div class="slider-text">
-             <h1>Cameras</h1>
-             <div class="features_list">
-             <h4>Photodetectors</h4>
-             </div>
-             <a href="preview.html" class="button">View Now</a>
-             </div>
+          })
+       }
+</script>
+<% @product.each do |i|%>
+<tr><%=link_to i.cat_name,product_path(i)%></tr>
+    <% @ten=Product.where(:cat_name=>i.cat_name).maximum(:id)%>
+    <%@ca=Product.where(:parent_id=>@ten)%>
+    <br>
+    <tr><%= form_tag({ controller: 'products', action: 'show' }, method: 'get') do %>
+    <%= select_tag "id", options_from_collection_for_select(@ca, "id", "cat_name"),{:include_blank=>"--Select--"}%></tr>
+          <%= submit_tag "view"%>
 
-                   <div class="clear"></div>
-                   </div>
-                   <div class="slide">
- <div class="slider-text">
-                   <h1>Pumps</h1>
-                   <div class="features_list">
-                   <h4>Plews Plastic Barrel Pumps</h4>
-                   </div>
-                   <a href="preview.html" class="button">View Now</a>
-                   </div>
+       <% end %> 
 
-                          <div class="slider-img">
-                          <a href="preview.html"><img src="/assets/pumps2.JPG" alt="learn more" /></a> </div>                                          <div class="clear"></div>
-                          </div>
-                          <div class="slide">
-                          <div class="slider-img">
-
-                              <a href="preview.html"><img src="/assets/tapes.jpg" alt="learn more" /></a>
-                              </div>
-                              <div class="slider-text">
-                              <h1>Tape Products</h1>
-                              <div class="features_list">
-                              <h4>Sealants & Tapes</h4>
-                              </div>
-                              <a href="preview.html" class="button">View Now</a>
-                              </div>
-
-                                   <div class="clear"></div>
-                                   </div>
-                                   </div>
-                                   </div>
-                                   <div class="clear"></div>
-                                   </div>
-                                   </div>
-                                   <div class="clear"></div>
-                                   </div>
-                                   </div>
-</head>
-
-</body>
-</html>
-
+<% end %>
+</div>   </div>
+               

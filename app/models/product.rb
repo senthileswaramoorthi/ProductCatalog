@@ -3,8 +3,10 @@ require 'csv'
   def self.browser(file)
     f= CSV.read(file.tempfile) 
     d=f[0].index("T")
+  f[0].delete_at(d)
   fc=f[0].count-1
    ff=f[0].last(fc)
+
     mh =  ["Global Description", "Manufacturer Name", "Manufacturer Logo", "Manufacturer Part Number", "Product Name", "Long Description", "Short Description", "Feature Copy", "Feature Bullet"]  
     ch=["GD", "M Name", "M Logo", "M Number", "Name", "D Long", "D Short", "D Copy", "D Bullet"]
        gdl=ff.index(ch[0])
@@ -51,7 +53,9 @@ require 'csv'
       end
     line.delete_at(d)
       x = line ; id=x.shift
-      x1 = x.shift(trl)
+      x1=x
+      x2 = x.pop(ac)
+
       gd=x1[gdl]
       mm=x1[ml..mel]
       pn=x1[pnl]
@@ -89,22 +93,20 @@ require 'csv'
       dh3 = d5.flat_map{|x| [adf[2],x]}.flatten
       imo=[gh1,eh2,dh3,ht1,pd2,im3].flatten
       glo = imo.each_slice(3).to_a
-      att = x.each_slice(3).to_a.flat_map{|x| [adf[6],x]}.flatten.each_slice(4).to_a.reject{|i| i[1] == nil}
+      att = x2.each_slice(3).to_a.flat_map{|x| [adf[6],x]}.flatten.each_slice(4).to_a.reject{|i| i[1] == nil}
       add = glo + att
       ad = add.reject{|i| i[2] == nil}
       ad.each do|p|
          csv << [id] + [@c] + p
+    
         end
       end
+
       csv.each do|i|
-      
+    
         sku=Sku.new(:i_id=>i[0],:c_name=>i[2],:name=>i[3],:value=>i[4],:unit=>i[5],:p_id=>i[1])
         sku.save(:validate=>false)
     end 
   end
-def self.search(search)
-  where("name LIKE ?", "%#{search}%") 
-  where("content LIKE ?", "%#{search}%")
-end
 end
 

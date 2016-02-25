@@ -1,15 +1,19 @@
 class ProductsController < ApplicationController
+# add_breadcrumb "nav", :product_path
+# add_breadcrumb "nav1", :root_path
+
 
  def home
-
-    @product=Product.where(:parent_id=>nil)
+ @product=Product.where(:parent_id=>nil)
+   
  end
 
  def login
-
-    @adminst=Adminst.new
+ @admi=Admi.new
 
     render :layout => false
+
+   
 
  end
 
@@ -18,70 +22,51 @@ class ProductsController < ApplicationController
                
     params.permit!
 
-    @adminst=Adminst.where params[:adminst]
+      @admi=Admi.where params[:admi]
 
-<<<<<<< HEAD
-    if @adminst.blank?
+      if not @admi.blank?
 
-    session[:adminst_id]=@adminst.first.id
+        session[:admi_id]=@admi.first.id
 
-     @product=Product.new 
-   redirect_to :action=>"aboutus"
-=======
-    if not @admin.blank?
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
+        redirect_to :action=>"browser"
 
-       session[:admin_id]=@admin.first.id
-       flash[:notice] = "Post successfully created"
-     
-       redirect_to :action=>"browser"
-  
-    else
+      else
 
-       redirect_to :action=>"login"
+        redirect_to :action => "login"
 
-    end
+      end
 
  end 
 
  def logout
-
-      session[:admin_id]=nil
+ session[:admi_id]=nil
 
       redirect_to :action => "home"
 
  end
 
  def new_account
+@admi=Admi.new
 
-    @adminst=Adminst.new
+     render :layout => false
 
-    render :layout => false
 
  end
 
  def new_account_process
  
-<<<<<<< HEAD
-  @adminst=Adminst.new(adminst_params)
 
-   if @adminst.save
+      @admi=Admi.new(admi_params)
 
-   redirect_to :action=>"login"
-=======
-     @admin=Admin.new(admin_params)
-
-     if @admin.save
+     if @admi.save
 
         redirect_to :action=>"browser"
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
   
      else
     
        redirect_to :action=>"new_account"
     
      end
-  
  end
 
  def browser
@@ -89,6 +74,11 @@ class ProductsController < ApplicationController
     @product=Product.new
 
     render :layout => false
+
+ end
+ def help_browser
+ 
+     send_file Rails.root.join('public/files', 'sample.xls'), :type=>"application/xls", :x_sendfile=>true
 
  end
  
@@ -105,22 +95,111 @@ class ProductsController < ApplicationController
  end
 
  def show 
-
+$taxo=[]
     #@product1=Product.new
-    @product=Product.where(:parent_id=>nil)
+   
     unless Product.exists?(:parent_id=>params[:id])
+   
       @product1=Sku.where(:p_id=>params[:id])
+             @ta=@product1.maximum(:p_id)
 #@product12=Sku.where(:p_id=>params[:id]).maximum(:i_id)
 
       #@product2=@product11.where(:name=> "Product Name").maximum(:value)
 
        #@product3=@product11.where(:name=> "Manufacturer Name").maximum(:value)
        #@product1=[@product12,@product2,@product3]
+    
+    #add_breadcrumb "Contact Us", products_path, :title => "Back to the Index"
 
     else 
+      
+
       @product1=Product.where("parent_id=?", params[:id])
+       @ta=@product1.maximum(:parent_id)
+      
     end
+  
+begin
+    s=nil
+     @tax=Product.where(:id=>@ta)
+
+     tax1=Product.where(:id=>@ta).maximum(:parent_id)
+     
+ $taxo<<@tax
+
+ @ta=@tax.maximum(:parent_id)
+
+end until tax1==s
+
+
+
  end
+  def edit
+    $t=nil
+@sku=Sku.where(id:params[:id]).maximum(:i_id)
+    @sku2=Sku.where(:i_id=>@sku)
+         @img=@sku2.where("c_name IS 'IMAGE'").maximum(:value)
+
+        @logo=@sku2.where("c_name IS 'Manufaturer Logo'").maximum(:value)
+    @sku1=@sku2.where("c_name IS 'Attributes'")
+     @sku3=@sku2.where("c_name IS 'Global'")
+@sku4=@sku2.where("c_name IS 'Extra'")
+@sku5=@sku2.where("c_name IS 'Description'")
+@sku6=@sku2.where("c_name IS 'HTML' OR c_name IS 'PDF'")
+#@ta=Sku.where(id:params[:id]).maximum(:p_id)
+
+#begin
+ #   s=nil
+  #   @tax=Product.where(:id=>@ta)
+
+   #  tax1=Product.where(:id=>@ta).maximum(:parent_id)
+     
+ #$taxo<<@tax
+
+ #@ta=@tax.maximum(:parent_id)
+
+#end until tax1==s
+   end
+def manu_index
+  #if Product.exists?(parent_id:params[:product_id])
+  @index=Product.where(parent_id:params[:product_id]).select(:id)
+#end
+
+  while !@index.blank?
+      @index=Product.where(:parent_id=>@index).maximum(:id)
+    @pass=@index
+  end
+  @in=Sku.where(:p_id=>@pass)
+ 
+  @result=@in.where("name IS 'Manufaturer Name'").maximum(:value)
+
+end
+def result
+    @sku = Sku.all
+  if params[:search]
+    @sku = Sku.search(params[:search])
+
+    #.select(:i_id).uniq
+  else
+   @sku = Sku.all
+  end
+ end
+
+def manu
+ sku=params[:product_id]
+
+@sku=Sku.where(:value=>sku)
+#.select(:i_id).uniq
+end
+
+
+ def dest2
+    sku=params[:product_id]
+    @sku1=Sku.where(:i_id=>sku)
+   
+ end
+
+  
  def aboutus
  @product=Product.new
  end
@@ -137,7 +216,7 @@ class ProductsController < ApplicationController
 
  end
 
- def admin_params
-   params.require(:admin).permit!
+ def admi_params
+   params.require(:admi).permit!
  end
 end

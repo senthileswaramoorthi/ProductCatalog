@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'products/browser'
 
+  get 'products/help_browser'
+
   get 'products/browser_process'
 
   get 'products/result'
@@ -22,25 +24,17 @@ Rails.application.routes.draw do
   get 'products/description'
 
   get 'products/details'
-<<<<<<< HEAD
-  
- # get 'products/result_process'
-=======
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
 
   get 'products/logout'
 
-
   post 'products/result'
 
-<<<<<<< HEAD
-=======
   put 'products/result_process'
 
   patch 'products/result_process'
 
   post  'products/result_process'
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
+
 
   post 'products/login'
 
@@ -50,12 +44,6 @@ Rails.application.routes.draw do
 
   post 'products/browser_process'
 
-<<<<<<< HEAD
- # post  'products/result_process'
-=======
-  post 'products/new_account'
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
-
   post 'products/new_account_process'
 
   post 'products/description'
@@ -64,13 +52,21 @@ Rails.application.routes.draw do
 
   post 'products/aboutus'
 
-<<<<<<< HEAD
-  post 'products/browser_process'
-resources :products
-=======
   post 'products/logout'
+  
+  post 'products/home'
 
->>>>>>> 6d2f4899fc872e93c63abe34e7775b8eff401381
+  get 'products/show'
+resources :products do
+get 'dest2'
+
+  get 'manu'
+  get 'manu_index'
+ end
+
+
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
