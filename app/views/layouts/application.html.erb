@@ -13,6 +13,30 @@
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript" src="js/startstop-slider.js"></script>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $("hid").click(function(){
+        $(this).hide();
+    });
+});
+</script>
+
+<script>
+  $(document).ready(function(){
+    $("cid").click(function(){
+        $(this).hide();
+    });
+});
+</script>
+
+
+
+
 </head>
 <body>
 
@@ -64,28 +88,54 @@
  <div class="categories">
       <ul>
       <h3>Categories</h3>
-      <%product=Product.where(parent_id:nil)%>
-        <% product.limit(10).each do |i|%>
+      <%@product=Product.where(parent_id:nil)%>
+       <%@pro=@product.take(10)%>
+        <% @pro.each do |i|%>
         <li>  <%=link_to i.cat_name,product_path(i)%></li>
        <%end%>
+           <hid><l class="l" data-toggle="collapse" data-target="#demo">..see more</l></hid>
+            <div id="demo" class="collapse">
+           <%@product=Product.where(parent_id:nil)%>
+          <% (@product-@pro).each do |i|%>
+         <li>  <%=link_to i.cat_name,product_path(i)%></li>
+         <%end%>
+        </div>   
+                     
+        
        <h3>Manufacturer</h3>
-        <%man=Sku.where("name IS 'Manufacturer Name'").select(:value).uniq%>
-        <% man.take(10).each do |j|%>
+        <%@man=Sku.where("name IS 'Manufacturer Name'").group(:value)%>
+         <%@m=@man.take(10)%>
+
+        <%@man.take(10).each do |j|%>
 
         <li><%=link_to j.value,product_manu_path(j.value) %></li>
         
         <%end%>
- <h3>Manufatures index</h3>
-      <%productm=Product.where(parent_id:nil)%>
-        <% productm.limit(10).each do |i|%>
-        <li>  <%=link_to i.cat_name, product_manu_index_path(i)%></li>
-       <%end%>
+
+        <cid><r class="l" data-toggle="collapse" data-target="#memo">..see more</r></cid>
+            <div id="memo" class="collapse">
+
+          <% (@man-@m).each do |j|%>
+
+        <li><%=link_to j.value,product_manu_path(j.value) %></li>
+        
+        <%end%>
+             </div>
+
+
+       <h3><%=link_to "Manufaturers index",  products_manu_cate_path%></h3>
+      
+        
       </ul>
  </div>         
  </div>
-<%= yield %>
- 
- 
+
+
+<div data-pjax-container>
+<%= yield %> 
+</div>
+
+
 
 
 </body>

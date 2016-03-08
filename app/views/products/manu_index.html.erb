@@ -1,0 +1,9 @@
+<%=$root.maximum(:cat_name)%>
+<hr>
+<br>
+<br>
+<%@in.map do|i|%>
+<%next if @t==i.maximum(:value)%>
+<%=link_to i.maximum(:value), products_manu1_path(i.maximum(:id))%>
+<%@t=i.maximum(:value)%>
+<%end%>

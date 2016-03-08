@@ -1,0 +1,11 @@
+<br>
+<%=$root.maximum(:cat_name)%>
+<br><br>
+
+
+
+<%@cat1.each do |i|%>
+<%@e=Product.where(id:i.to_i)%>
+<%=link_to @e.maximum(:cat_name), products_manu_desc_path(@e.maximum(:id))%>
+<br>
+<%end%>

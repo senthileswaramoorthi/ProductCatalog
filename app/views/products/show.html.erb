@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <!--%=form_for[@product1], :url=>{:controller=>"products", :action=>"result_process"} do |i| %-->
 
@@ -13,40 +17,92 @@
 <%@taxo=$taxo.reverse%>
 <%@taxo.each do |i|%>
 <!--%@temp=i.maximum(:id)%-->
+
 <%=link_to i.maximum(:cat_name), product_path(i.maximum(:id))%>>
 <%end%>
 <hr>
 <% unless  @product1.is_a? Sku::ActiveRecord_Relation %>
-<div class="table-responsive">
-	<table class="table">
-		 <thead>
-      <tr bgcolor="#A5A7A8">
-        <th>Categories</th></tr></thead>
+
+
+
+
+<div class="col-sm-9">
+
 <%@product1.each do|i|%>
-<tbody><tr><td><%=link_to i.cat_name, product_path(i)%></td></tr></tbody>
+<div class="col-sm-5">
+
+<div class="table-responsive" style="border-radius: 7px; box-shadow: 10px 10px 5px; background-color: white; margin-inline-start: -3px;" id="shadow">
+
+  
+<table class="table" style="width:100%; font-size:14px; line-height: 90%">
+<tbody><!--tr bgcolor="#383838" onMouseOver="this.style.backgroundColor='#B81D22'",
+   onMouseOut="this.style.backgroundColor='#383838'"-->
+    <% @ten=Product.where(:cat_name=>i.cat_name).maximum(:id)%>
+    <%@ca=Product.where(:parent_id=>@ten)%>
+    <%@a=[]%>
+    <%@a << b=[Product.where(:cat_name=>i.cat_name).select(:id)]%>
+    <%@a.map do |o|%>
+    <%o.map do |i|%>
+    <%if Product.exists?(:parent_id=>i)%>
+    <%@a << [Product.where(:parent_id=>i).select(:id)]%>
+    <%else%>
+    <%b=Sku.where(:p_id=>i)%>
+    <%@ima=b.where(:c_name=>"IMAGE").maximum(:value)%>
 <%end%>
+<%end%>
+<%end%>
+   <tr><td>
+<%if @ima==nil%>
+   <img style="width:100%; height:100%;" src="/assets/not.jpeg" alt="Image not available">
+
+  <%else%>
+<%=image_tag @ima, :height=>"100%", :width=>"100%" %>
+<%end%></td><td>
+
+<table class="table"><tr>
+
+<%=link_to i.cat_name, product_path(i), :style=>"color:red; font-size:76%"%>
+   </tr>
+<tr><td>
+    <ul>
+<%@ca.each do |i|%>
+<li>&nbsp;&nbsp;&nbsp;<a href="#"><%=link_to i.cat_name, product_path(i), :style=>"color: rgb(156, 156, 156); font-size:80% ", :onMouseOver=>"this.style.color='#B81D22'",
+   :onMouseOut=>"this.style.color='gray'"%></a></li>
+  <%end%></ul>
+</td>
+</tr></table></td></tr>
 </table>
+
 </div>
+</div>
+<%end%>
+</div>
+<br>
+
+
+
+
+
 <%else%>
 <div class="col-sm-8">
-		 
+     
 <%@product1.each do|i|%>
 
 <%if @s!=i.i_id%>
 <div class="col-sm-4">
-<div class="table-responsive">
-  <table class="table" style="width:70%; font-size:10px; line-height: 90%">
+<div class="table-responsive" style="border-radius: 20px; box-shadow: 10px 10px 5px; background-color: white;" align="center" id="shadow">
+  <table class="table" style="width:100%; font-size:10px; line-height: 90%">
     <%@p=Sku.where(:i_id=>i.i_id)%>
 <%@im=@p.where(:c_name=> "IMAGE").maximum(:value)%>
 
-<tbody><tr><td>
+<tbody><tr><td align="center">
   <%if @im.blank?%>
-  <img style="width:70%; height:100px;" src="/assets/not.jpeg" alt="Image not available">
+  <img style="width:100%; height:100px;" src="/assets/not.jpeg" alt="Image not available">
 
   <%else%>
 <%=image_tag @im, :height=>"100%", :width=>"100%" %>
 <%end%>
-</td><td><tr class="info"><td align="center"><%=link_to i.i_id, edit_product_path(i)%></td></tr>
+</td><td><tr bgcolor="#B81D22"><td align="center"><%=link_to i.i_id, edit_product_path(i), :style=>"color:white;"%></td></tr>
 
 
 <tr><td align="center"><%=@p.where(:name=> "Product Name").maximum(:value)%></td></tr>

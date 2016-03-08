@@ -556,21 +556,47 @@ body {
 }
 
 .tab-content > .active {
-   display: block;
+    display: block;
     position: absolute;
-    top: 39%;
-    left: 32%;  
+    top: 42%;
+    left: 32%;
 }
+
 
 .drop{
 	width: 24%;
 }
 .container{
 	width: 78%;
-	margin-left: 24%;
+	margin-left: 198px;
+margin-top: 74px;
 }
 .nav{
-	    margin-top: 12px;
-    margin-left: 20%;
+	    margin-top:-50px;
+    margin-left: -14%;
+}
+
+
+.pname{
+	font-size: 20px;
+    font-family: "Times New Roman", serif;
+    font-style: oblique;
+    color: #b81d22;
+    margin-top: 5px;
+    
+}
+.h3{
+	text-decoration:none;
+	color:white
+}
+.li a:hover {
+    color: #B81D22;
+}
+.l{
+	color:red;
+	font-size: 12px;
+	margin-left: 70%;
 
 }
+
+

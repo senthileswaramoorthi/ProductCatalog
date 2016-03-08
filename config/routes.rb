@@ -57,11 +57,16 @@ Rails.application.routes.draw do
   post 'products/home'
 
   get 'products/show'
+  get 'products/manu_cate'
+  get 'products/manu1'
+  get 'products/manu_desc'
 resources :products do
 get 'dest2'
 
   get 'manu'
   get 'manu_index'
+  
+
  end
 
 

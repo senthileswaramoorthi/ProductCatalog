@@ -8,6 +8,7 @@ gem 'execjs'
 gem 'therubyracer' 
 gem 'sqlite3'
 gem 'searchkick'
+gem 'pjax_rails'
 #gem 'bootstrap-sass','2.3.1.0'
 gem "breadcrumbs_on_rails"
 #gem 'acts_as_tree', '~> 2.4'

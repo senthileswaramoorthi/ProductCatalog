@@ -1,43 +1,15 @@
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
-  <div class="col-sm-8">
-     
-<%@sku.each do|i|%>
 
-<%if @s!=i.i_id%>
-<div class="col-sm-4">
-<div class="table-responsive">
-  <table class="table" style="width:70%; font-size:10px; line-height: 90%">
-    <%@p=Sku.where(:i_id=>i.i_id)%>
-<%@im=@p.where(:c_name=> "IMAGE").maximum(:value)%>
+<% $taxo1.each do |i|%>
+<table>
+<%if i.parent_id == nil%>
+          <%@l1=i.id%>
 
-<tbody><tr><td>
-  <%if @im.blank?%>
-  <img style="width:70%; height:100px;" src="/assets/not.jpeg" alt="Image not available">
-
-  <%else%>
-<%=image_tag @im, :height=>"100%", :width=>"100%" %>
+<tr><td><%= i.cat_name %></td></tr>
+<% $taxo1.each do|k|%>
+            <%if k.parent_id==@l1.to_s%>
+<tr><td>--<%=link_to k.cat_name,product_manu_path(k.id)%></td></tr>
 <%end%>
-</td><td><tr class="info"><td align="center"><%=link_to i.i_id, edit_product_path(i)%></td></tr>
-
-
-<tr><td align="center"><%=@p.where(:name=> "Product Name").maximum(:value)%></td></tr>
-<tr><td align="center"><%=@p.where(:name=> "Manufacturer Name").maximum(:value)%></td></tr></td></tr></tbody>
-
+<%end%>
+<%end%>
 </table>
-
-</div>
-</div>
 <%end%>
-<%@s=i.i_id%>
-<%end%>
-
-</div>
-</body>
-</html>

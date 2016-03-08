@@ -1,7 +1,13 @@
-<div class="row">
-<h1>Categories</h1>
-<br>
-<div class="col-sm-6">
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+
 <script type="text/javascript">
         function get_sub_a{
                 $.ajax({
@@ -11,17 +17,60 @@
           })
        }
 </script>
+
+<div class="col-sm-9" style="margin-top: 6%;">
+ 
 <% @product.each do |i|%>
-<tr><%=link_to i.cat_name,product_path(i)%></tr>
-    <% @ten=Product.where(:cat_name=>i.cat_name).maximum(:id)%>
-    <%@ca=Product.where(:parent_id=>@ten)%>
-    <br>
-    <tr><%= form_tag({ controller: 'products', action: 'show' }, method: 'get') do %>
-    <%= select_tag "id", options_from_collection_for_select(@ca, "id", "cat_name"),{:include_blank=>"--Select--"}%></tr>
-          <%= submit_tag "view"%>
 
-       <% end %> 
+<!--br-->
+<div class="col-sm-5"> 
 
+<br>
+<!--div class="col-sm-5"-->
+
+<!--div class="sp"-->
+
+<div class="table-responsive" style="border-radius: 7px; box-shadow: 10px 10px 5px; background-color: white; margin-inline-start: -3px;" id="shadow">
+
+  
+<table class="table" style="width:100%; font-size:14px; line-height: 90%">
+
+<% @ten=Product.where(:cat_name=>i.cat_name).maximum(:id)%>
+<%@ca=Product.where(:parent_id=>@ten)%>
+<%@a=[]%>
+<%@a << b=[Product.where(:cat_name=>i.cat_name).select(:id)]%>
+<%@a.map do |o|%>
+<%o.map do |i|%>
+
+<%if Product.exists?(:parent_id=>i.maximum(:id))%>
+<%@a << [Product.where(:parent_id=>i).select(:id)]%>
+<%else%>
+<%b=Sku.where(:p_id=>i)%>
+<%@ima=b.where(:c_name=>"IMAGE").maximum(:value)%>
+<%end%>
+<%end%>
+<%end%>
+<tr><td>
+ <%if @ima==nil%>
+  <img style="width:100%; height:100%;" src="/assets/not.jpeg" alt="Image not available">
+
+  <%else%>
+<%=image_tag @ima, :height=>"100%", :width=>"100%" %>
+<%end%>
+<!--td colspan="2"--><%= form_tag({ controller: 'products', action: 'show' }, method: 'get') do %>
+</td><td><table class="table"><tr>
+<!--%= select_tag "id", options_from_collection_for_select(@ca, "id", "cat_name"),{:include_blank=>"-Select-"}%-->
+          
+<!--%= submit_tag "view"%-->
+<%=link_to i.cat_name,product_path(i),:style=>"color: red; font-size:76%"%></tr>
+<tr><td><%= select_tag "id",options_from_collection_for_select(@ca, "id", "cat_name"),{:include_blank=>"--Select--",:style=>"width: 100%; font-size:80%;"}%></td>
+
+<td><input style="margin-top: -8px; margin-left: -4px; margin-bottom: -15px;" alt="Sub" src="/assets/sub7.png" height="40" type="image" width="25" ></td>
+</tr></table></td></tr>
+</table>
+</div>
+</div>
 <% end %>
-</div>   </div>
-               
+<% end %>
+</div>
+</html>               
